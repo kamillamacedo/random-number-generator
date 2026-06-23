@@ -29,17 +29,31 @@
                 id="quantity"
                 type="number"
                 min="1"
+                placeholder="1"
               />
             </div>
 
             <div class="container__field">
               <label class="text__paragraph">From number</label>
-              <input class="container__input" id="from" type="number" min="1" />
+              <input
+                class="container__input"
+                id="min"
+                type="number"
+                min="1"
+                oninput="updateLimits()"
+                required
+              />
             </div>
 
             <div class="container__field">
               <label class="text__paragraph">To number</label>
-              <input class="container__input" id="to" type="number" min="1" />
+              <input
+                class="container__input"
+                id="max"
+                type="number"
+                min="1"
+                required
+              />
             </div>
           </div>
 
@@ -54,7 +68,8 @@
             <button
               onclick="reset()"
               id="btn-reset"
-              class="container__button-disabled"
+              class="container__button"
+              disabled
             >
               Reset
             </button>
