@@ -2,7 +2,6 @@ function generate() {
   let quantity = parseInt(document.getElementById("quantity").value) || 1;
   let min = parseInt(document.getElementById("min").value);
   let max = parseInt(document.getElementById("max").value);
-
   let allowDuplicates =
     document.getElementById("toggle-duplicates")?.checked || false;
 
@@ -15,6 +14,9 @@ function generate() {
   }
 
   let numbersList = numbersGenerator(quantity, min, max, allowDuplicates);
+
+  document.getElementById("btn-reset").removeAttribute("disabled")
+
   console.log(numbersList);
   return numbersList;
 }
@@ -46,4 +48,19 @@ function updateLimits() {
   }
 }
 
-function reset(params) {}
+function clearField() {
+  let quantity = document.getElementById("quantity");
+  let min = document.getElementById("min");
+  let max = document.getElementById("max");
+
+  quantity.value = "";
+  min.value = "";
+  max.value = "";
+
+  max.removeAttribute("min");
+}
+
+function reset() {
+    clearField();
+    document.getElementById("btn-reset").setAttribute("disabled", true);
+}
