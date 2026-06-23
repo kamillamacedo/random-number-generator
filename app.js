@@ -3,6 +3,9 @@ function generate() {
   let min = parseInt(document.getElementById("min").value);
   let max = parseInt(document.getElementById("max").value);
 
+  let allowDuplicates =
+    document.getElementById("toggle-duplicates")?.checked || false;
+
   if (isNaN(min) || isNaN(max) || min > max) {
     return [];
   }
@@ -11,27 +14,35 @@ function generate() {
     quantity = 1;
   }
 
-  let numbersList = numbersGenerator(quantity, min, max);
+  let numbersList = numbersGenerator(quantity, min, max, allowDuplicates);
   console.log(numbersList);
   return numbersList;
 }
 
-function numbersGenerator(quantity, min, max) {
+function numbersGenerator(quantity, min, max, allowDuplicates) {
   let numbersGenerated = [];
-  for (let index = 0; index < quantity; index++) {
+
+  if (!allowDuplicates && max - min + 1 < quantity) {
+    return [];
+  }
+
+  while (numbersGenerated.length < quantity) {
     let number = Math.floor(Math.random() * (max - min + 1)) + min;
-    numbersGenerated.push(number);
+
+    if (allowDuplicates || !numbersGenerated.includes(number)) {
+      numbersGenerated.push(number);
+    }
   }
 
   return numbersGenerated;
 }
 
 function updateLimits() {
-  let minValor = parseInt(document.getElementById("min").value);
+  let minValue = parseInt(document.getElementById("min").value);
   let inputMax = document.getElementById("max");
 
-  if (!isNaN(minValor)) {
-    inputMax.min = minValor + 1;
+  if (!isNaN(minValue)) {
+    inputMax.min = minValue + 1;
   }
 }
 
