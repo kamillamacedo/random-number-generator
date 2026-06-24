@@ -60,16 +60,13 @@ function updateLimits() {
 }
 
 function clearField() {
-  let quantity = document.getElementById("quantity");
-  let min = document.getElementById("min");
-  let max = document.getElementById("max");
-
-  quantity.value = "";
-  min.value = "";
-  max.value = "";
+  document.getElementById("quantity").value = "";
+  document.getElementById("min").value = "";
   result.innerHTML = "";
 
-  max.removeAttribute("min");
+  let maxInput = document.getElementById("max");
+  maxInput.value = "";
+  maxInput.removeAttribute("min");
 }
 
 function reset() {
