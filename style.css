@@ -76,7 +76,7 @@ body::before {
 }
 
 .container__input {
-  width: 130px;
+  width: 145px;
   height: 72px;
   border-radius: 16px;
   background-color: #fff;
@@ -118,6 +118,7 @@ h1 {
   font-weight: 700;
   line-height: 100%;
   padding: 2rem;
+  text-align: center;
 }
 
 .text__paragraph {
