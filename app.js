@@ -1,12 +1,15 @@
+let result = document.getElementById("result");
+
 function generate() {
   let quantity = parseInt(document.getElementById("quantity").value) || 1;
   let min = parseInt(document.getElementById("min").value);
   let max = parseInt(document.getElementById("max").value);
   let allowDuplicates =
     document.getElementById("toggle-duplicates")?.checked || false;
+  
 
   if (isNaN(min) || isNaN(max) || min > max) {
-    return [];
+    return (result.innerHTML = `<label class="text__paragraph">Error: Invalid input. The numbers could not be generated.</label>`);
   }
 
   if (quantity < 1) {
@@ -14,10 +17,18 @@ function generate() {
   }
 
   let numbersList = numbersGenerator(quantity, min, max, allowDuplicates);
+  
+  if (numbersList.length === 0) {
+    result.innerHTML = `<label class="text__paragraph">Error: Not enough unique numbers available in the specified range.</label>`;
+  } else{
+    result.innerHTML = `<label class="text__paragraph">Generated numbers: ${numbersList.join(", ")}</label>`;
+  }
 
-  document.getElementById("btn-reset").removeAttribute("disabled")
+
+  document.getElementById("btn-reset").removeAttribute("disabled");
 
   console.log(numbersList);
+
   return numbersList;
 }
 
@@ -56,11 +67,12 @@ function clearField() {
   quantity.value = "";
   min.value = "";
   max.value = "";
+  result.innerHTML = "";
 
   max.removeAttribute("min");
 }
 
 function reset() {
-    clearField();
-    document.getElementById("btn-reset").setAttribute("disabled", true);
+  clearField();
+  document.getElementById("btn-reset").setAttribute("disabled", true);
 }
