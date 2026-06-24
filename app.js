@@ -9,7 +9,7 @@ function generate() {
   
 
   if (isNaN(min) || isNaN(max) || min > max) {
-    return (result.innerHTML = `<label class="text__paragraph">Error: Invalid input. The numbers could not be generated.</label>`);
+    return (result.innerHTML = `<span class="text__error">Error: Invalid input. The numbers could not be generated.</span>`);
   }
 
   if (quantity < 1) {
@@ -19,9 +19,9 @@ function generate() {
   let numbersList = numbersGenerator(quantity, min, max, allowDuplicates);
   
   if (numbersList.length === 0) {
-    result.innerHTML = `<label class="text__paragraph">Error: Not enough unique numbers available in the specified range.</label>`;
+    result.innerHTML = `<span class="text__error">Error: Not enough unique numbers available in the specified range.</span>`;
   } else{
-    result.innerHTML = `<label class="text__paragraph">Generated numbers: ${numbersList.join(", ")}</label>`;
+    result.innerHTML = `<span class="text__success">Generated numbers: ${numbersList.join(", ")}</span>`;
   }
 
 
